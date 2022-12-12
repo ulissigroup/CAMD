@@ -954,6 +954,7 @@ class MultiAnalyzer(AnalyzerBase):
         self.total_expt_discovery = total_expt_discovery
         self.analyze_cost = analyze_cost
         self.total_cost = total_cost
+        self.expt_tag = expt_tag
 
     def _filter_df_by_prop_range(self, df):
         """
@@ -978,7 +979,7 @@ class MultiAnalyzer(AnalyzerBase):
             (pd.DataFrame): new seed data
 
         """
-        new_expt_hypotheses = new_experimental_results.loc[new_experimental_results[expt_tag] == 1]
+        new_expt_hypotheses = new_experimental_results.loc[new_experimental_results[self.expt_tag] == 1]
         new_discoveries = self._filter_df_by_prop_range(new_expt_hypotheses)
 
         # total discovery = up to (& including) the current iteration
