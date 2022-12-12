@@ -935,13 +935,14 @@ class MultiAnalyzer(AnalyzerBase):
     """
     The multi-fidelity analyzer.
     """
-    def __init__(self, target_prop, prop_range, total_expt_queried=0,
+    def __init__(self, target_prop, prop_range, expt_tag='expt_data', total_expt_queried=0,
                  total_expt_discovery=0, analyze_cost=False, total_cost=0.0):
         """
         Args:
             target_prop (str)        The name of the target property, e.g. "bandgap".
             prop_range (list)        The range of the target property that is considered
                                      ideal.
+            expt_tag (str)           The name of the column indicating experimental observations.
             total_expt_queried (int) The total experimental queries after nth iteration. 
             tot_expt_discovery (int) The total experimental discovery after nth iteration.
             analyze_cost (bool)      If the input has "cost" column, also analyze that information.
@@ -977,7 +978,7 @@ class MultiAnalyzer(AnalyzerBase):
             (pd.DataFrame): new seed data
 
         """
-        new_expt_hypotheses = new_experimental_results.loc[new_experimental_results['expt_data'] == 1]
+        new_expt_hypotheses = new_experimental_results.loc[new_experimental_results[expt_tag] == 1]
         new_discoveries = self._filter_df_by_prop_range(new_expt_hypotheses)
 
         # total discovery = up to (& including) the current iteration
