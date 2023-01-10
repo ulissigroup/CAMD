@@ -995,6 +995,7 @@ class MultiAnalyzer(AnalyzerBase):
         self.total_expt_discovery = total_expt_discovery
         self.analyze_cost = analyze_cost
         self.total_cost = total_cost
+        self.expt_tag = expt_tag
 
     def _filter_df_by_prop_range(self, df):
         """

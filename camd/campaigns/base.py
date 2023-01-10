@@ -206,7 +206,7 @@ class Campaign(MSONable):
         )
 
         # Campaign stopper if agent doesn't have anything to suggest.
-        if len(suggested_experiments) == 0:
+        if (suggested_experiments is None) or (len(suggested_experiments) == 0):
             self.finalize()
             self.logger.info("No agent suggestions. Stopping the loop.")
             return False
